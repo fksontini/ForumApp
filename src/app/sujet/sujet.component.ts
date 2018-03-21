@@ -23,4 +23,9 @@ export class SujetComponent {
     this.sujet.messages.push( resp);
 
   }
+  SupprimerMessage(m)
+  {
+ let index=  this.sujet.messages.indexOf(m);
+this.sujet.messages.splice(index,1)
+}
 }

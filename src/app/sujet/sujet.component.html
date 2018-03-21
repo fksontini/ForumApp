@@ -8,6 +8,7 @@
             <p>
               {{m.contenu}}
             </p>
+            <button (click)="SupprimerMessage(m)">Supprimer</button>
           </fieldset>
       <h2>Réponses</h2>
         <form #form="ngForm" (ngSubmit)="envoyer(user.value,msg.value);form.reset();log(user)">
