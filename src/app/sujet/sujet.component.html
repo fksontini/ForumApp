@@ -1,0 +1,26 @@
+<li>
+  {{sujet.titre}}
+<br>
+  <button (click)="etat=!etat">Afficher les Sujets</button>
+        <div *ngIf="etat">
+          <fieldset *ngFor="let m of sujet.messages">
+              <legend>{{m.pseaudo}}</legend>
+            <p>
+              {{m.contenu}}
+            </p>
+          </fieldset>
+      <h2>Réponses</h2>
+        <form #form="ngForm" (ngSubmit)="envoyer(user.value,msg.value);form.reset();log(user)">
+          <label>Pseaudo</label><input type="text"  minlength="3" pattern="[a-z,A-Z]+" required ngModel #user="ngModel" name="user" >
+          <div class="alert alert-danger" *ngIf="user.invalid && user.touched" >
+            <span *ngIf="user.errors.required"> username required</span>
+            <span *ngIf="user.errors.minlength"> username minlength </span>
+            <span *ngIf="user.errors.pattern"> username pattern </span>
+          </div> 
+        <br>
+          <label>Messages</label><textarea  ngModel #msg="ngModel" name="message"></textarea>
+           
+          <button [disabled]="form.invalid" >Répondre</button>
+        </form>
+      </div>
+</li>
