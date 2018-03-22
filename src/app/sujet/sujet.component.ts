@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { sujet } from '../models/sujet';
 import { Message} from '../models/message';
-import {FormGroup,FormControl} from '@angular/forms'
+import {FormGroup,FormControl, Validators} from '@angular/forms'
 @Component({
   selector: 'app-sujet',
   templateUrl: './sujet.component.html',
@@ -15,7 +15,7 @@ export class SujetComponent {
   PartageMethode= ["facebook","twitter"];
   etat=false;
   form=new FormGroup(
-    { user:new FormControl()
+    { user:new FormControl('',[Validators.required,Validators.minLength(3)])
       ,
     message: new FormControl()
   });

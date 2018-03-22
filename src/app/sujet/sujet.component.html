@@ -39,16 +39,15 @@
         <form [formGroup]="form">
           <label>Pseaudo</label>
           <input type="text" formControlName="user" >
-          <div class="alert alert-danger">
-            <span> username required</span>
-            <span> username minlength </span>
-            <span> username pattern </span>
+          <div class="alert alert-danger" *ngIf="user.touched&&user.invalid">
+            <span *ngIf="user.errors.required"> username required</span>
+            <span *ngIf="user.errors.minlength"> username minlength </span>
           </div> 
         <br>
           <label>Messages</label>
           <textarea formControlName="message" ></textarea> <br>
         <br>
-          <button>Répondre</button>
+          <button [disabled]="form.invalid">Répondre</button>
       </form>
   </div>
 </li>
