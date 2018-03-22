@@ -11,7 +11,7 @@
             <button (click)="SupprimerMessage(m)">Supprimer</button>
           </fieldset>
       <h2>Réponses</h2>
-        <form #form="ngForm" (ngSubmit)="envoyer(user.value,msg.value);form.reset();log(user)">
+        <!-- <form #form="ngForm" (ngSubmit)="envoyer(user.value,msg.value);form.reset();log(user)">
           <label>Pseaudo</label><input type="text"  minlength="3" pattern="[a-z,A-Z]+" required ngModel #user="ngModel" name="user" >
           <div class="alert alert-danger" *ngIf="user.invalid && user.touched" >
             <span *ngIf="user.errors.required"> username required</span>
@@ -19,9 +19,36 @@
             <span *ngIf="user.errors.pattern"> username pattern </span>
           </div> 
         <br>
-          <label>Messages</label><textarea  ngModel #msg="ngModel" name="message"></textarea>
-           
+          <label>Messages</label><textarea  ngModel #msg="ngModel" name="message"></textarea> <br>
+<label>Envoyer un mail : </label>
+<input name="emailcheckbox" type="checkbox" ng-model #emailcheckbox > <br>
+<label>Partager via :</label>
+<select name="partage" ngModel multiple>
+  <option *ngFor="let p of PartageMethode">{{p}}</option>
+</select>
+<br>
+<div *ngFor="let p of PartageMethode" >
+
+
+<input type="radio"  ngModel name="radioPartage" value="{{p}}"  *ngFor="let p of PartageMethode"> {{p}} <br>
+</div>
           <button [disabled]="form.invalid" >Répondre</button>
-        </form>
-      </div>
+          {{form.value|json}}
+        </form> -->
+
+        <form [formGroup]="form">
+          <label>Pseaudo</label>
+          <input type="text" formControlName="user" >
+          <div class="alert alert-danger">
+            <span> username required</span>
+            <span> username minlength </span>
+            <span> username pattern </span>
+          </div> 
+        <br>
+          <label>Messages</label>
+          <textarea formControlName="message" ></textarea> <br>
+        <br>
+          <button>Répondre</button>
+      </form>
+  </div>
 </li>
